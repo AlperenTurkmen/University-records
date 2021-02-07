@@ -11,10 +11,11 @@ public class University {
 	private Module[] modules;
 
 	public University(){
-		String f = "students.csv";
-		Student[] students = new Student[10];
-		readStudents(f);
+		String f_student = "students.csv";
+		readStudents(f_student);
 
+		String f_moduledescrıptor = "module_descriptors.csv";
+		readModuleDescriptors(f_moduledescrıptor);
 
 	}
 
@@ -23,19 +24,20 @@ public class University {
       File myObj = new File(filename);
       Scanner myReader = new Scanner(myObj);
 			int i = 0;
-			String[] t_id;
+			String[] csv_line;
 			String st;
 
 			Student[] students = new Student[10] ;
 			st=myReader.nextLine(); //skip first line header
       while (myReader.hasNextLine()) {
 				st=myReader.nextLine();
-				t_id = st.split(",");
-				students[i] =new Student(t_id) ;
+				csv_line = st.split(",");
+				students[i] =new Student(csv_line) ;
 
-	      System.out.println(students[i].getId());
+	      /*System.out.println(students[i].getId());
 				System.out.println(students[i].getName());
 				System.out.println(students[i].getGender());
+				*/
 					i++;
       }
       myReader.close();
@@ -44,7 +46,36 @@ public class University {
       e.printStackTrace();
     }
   }
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+	private void readModuleDescriptors(String filename) {
+		try {
+			File myObj = new File(filename);
+			Scanner myReader = new Scanner(myObj);
+			int i = 0;
+			String[] csv_line;
+			String st;
 
+			ModuleDescriptor[] moduledescriptors = new ModuleDescriptor[40] ;
+			st=myReader.nextLine(); //skip first line header
+			while (myReader.hasNextLine()) {
+				st=myReader.nextLine();
+				csv_line = st.split(",");
+				//System.out.println("Lıne 2 :" + csv_line[2]);
+				moduledescriptors[i] =new ModuleDescriptor(csv_line) ;
+
+				/*
+				System.out.println(moduledescriptors[i].getName());
+				System.out.println(moduledescriptors[i].getCode());
+				System.out.println(moduledescriptors[i].getContinuousAssignmentWeights());
+				*/
+					i++;
+			}
+			myReader.close();
+		} catch (FileNotFoundException e) {
+			System.out.println("An error occurred.");
+			e.printStackTrace();
+		}
+	}
 	/**
 	 * @return The number of students registered in the system.
 	 */
