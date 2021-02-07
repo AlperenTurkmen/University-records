@@ -12,21 +12,31 @@ public class University {
 
 	public University(){
 		String f = "students.csv";
-		ReadFile(f);
+		Student[] students = new Student[10];
+		readStudents(f);
+
+
 	}
 
-	private void ReadFile(String filename) {
+	private void readStudents(String filename) {
     try {
       File myObj = new File(filename);
       Scanner myReader = new Scanner(myObj);
 			int i = 0;
-			String t_id;
-			String st="";
+			String[] t_id;
+			String st;
+
+			Student[] students = new Student[10] ;
+			st=myReader.nextLine(); //skip first line header
       while (myReader.hasNextLine()) {
 				st=myReader.nextLine();
 				t_id = st.split(",");
-				students[0].setId(Integer.parseInt(t_id));
-	      System.out.println(t_id);
+				students[i] =new Student(t_id) ;
+
+	      System.out.println(students[i].getId());
+				System.out.println(students[i].getName());
+				System.out.println(students[i].getGender());
+					i++;
       }
       myReader.close();
     } catch (FileNotFoundException e) {
