@@ -6,7 +6,9 @@ public class ModuleDescriptor {
 
 	private double[] continuousAssignmentWeights;
 
+	public ModuleDescriptor(){
 
+	}
 
 	public ModuleDescriptor (String[] line) {
 		this.name = line[0];
@@ -25,7 +27,7 @@ public class ModuleDescriptor {
 		//continuousAssignmentWeights.copyOf(continuousAssignmentWeights, weights.length);
 		for (int s = 0;s < weights.length; s++){
 				continuousAssignmentWeights[s]=Double.parseDouble(weights[s]);
-						System.out.println(continuousAssignmentWeights[s]);
+						//System.out.println(continuousAssignmentWeights[s]);
 		}
 
 		// this.continuousAssignmentWeights = line[2];
@@ -41,5 +43,7 @@ public class ModuleDescriptor {
 	public double[] getContinuousAssignmentWeights(){
 		return this.continuousAssignmentWeights ;
 	}
-
+	public void setCode(String newCode){
+		this.code = newCode;
+	}
 }

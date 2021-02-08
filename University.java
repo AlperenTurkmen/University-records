@@ -11,11 +11,9 @@ public class University {
 	private Module[] modules;
 
 	public University(){
-		String f_student = "students.csv";
-		readStudents(f_student);
-
-		String f_moduledescrıptor = "module_descriptors.csv";
-		readModuleDescriptors(f_moduledescrıptor);
+		readStudents("students.csv");
+		readModuleDescriptors("module_descriptors.csv");
+		readModules("module.csv");
 
 	}
 
@@ -33,11 +31,6 @@ public class University {
 				st=myReader.nextLine();
 				csv_line = st.split(",");
 				students[i] =new Student(csv_line) ;
-
-	      /*System.out.println(students[i].getId());
-				System.out.println(students[i].getName());
-				System.out.println(students[i].getGender());
-				*/
 					i++;
       }
       myReader.close();
@@ -55,19 +48,36 @@ public class University {
 			String[] csv_line;
 			String st;
 
-			ModuleDescriptor[] moduledescriptors = new ModuleDescriptor[40] ;
+			ModuleDescriptor[] moduledescriptors = new ModuleDescriptor[7] ;
 			st=myReader.nextLine(); //skip first line header
 			while (myReader.hasNextLine()) {
 				st=myReader.nextLine();
 				csv_line = st.split(",");
-				//System.out.println("Lıne 2 :" + csv_line[2]);
 				moduledescriptors[i] =new ModuleDescriptor(csv_line) ;
+					i++;
+			}
+			myReader.close();
+		} catch (FileNotFoundException e) {
+			System.out.println("An error occurred.");
+			e.printStackTrace();
+		}
+	}
 
-				/*
-				System.out.println(moduledescriptors[i].getName());
-				System.out.println(moduledescriptors[i].getCode());
-				System.out.println(moduledescriptors[i].getContinuousAssignmentWeights());
-				*/
+	private void readModules(String filename) {
+		try {
+			File myObj = new File(filename);
+			Scanner myReader = new Scanner(myObj);
+			int i = 0;
+			String[] csv_line;
+			String st;
+
+			Module[] modules = new Module[40] ;
+			st=myReader.nextLine(); //skip first line header
+			while (myReader.hasNextLine()) {
+				st=myReader.nextLine();
+				csv_line = st.split(",");
+				modules[i] =new Module(csv_line);
+					//System.out.println(modules[i].getModuleCode());
 					i++;
 			}
 			myReader.close();

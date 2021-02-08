@@ -16,8 +16,8 @@ public class Student {
 		this.gender = line[2].charAt(1);
 	}
 
-	public void setId(int newId){
-		this.id = newId;
+	public Student(){
+	
 	}
 	public int getId(){
 		return this.id ;
@@ -28,6 +28,9 @@ public class Student {
 	}
 	public char getGender(){
 		return this.gender ;
+	}
+	public void setId(int newId){
+		this.id = newId;
 	}
 	public String printTranscript() {
 		// do something
