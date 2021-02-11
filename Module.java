@@ -1,3 +1,5 @@
+package com.homework.ecm;
+
 public class Module {
 
 	private int year;
@@ -10,47 +12,78 @@ public class Module {
 
 	private double finalAverageGrade;
 
-
-	public Module (String[] line) {
-		//this.id = line[0];
-		//this.code = line[1];
+	public Module(String[] line) {
 		module = new ModuleDescriptor();
-		records = new StudentRecord[40];
+		this.module.setCode(line[1]);
 		this.year = Integer.parseInt(line[2].trim());
 		this.term = Byte.parseByte(line[3].trim());
-		this.module.setCode(line[1]);
+		// this.module = UoK.findModuleDescriptor(line[1]);
 
-		String marksString = "";
-		String[] marks;
-    for (int s = 4;s < line.length; s++){
-				marksString += line[s]+ ",";
-		}
-		int j;
-		marksString = marksString.replace('[',' ');
-		marksString = marksString.replace(']',' ');
-		marks = marksString.split(",");
-		for (j=0; j<marks.length; j++){
-			this.records[j].student.setId(marks[j]);
-		}
-
-		System.out.println(marks[0]);
-
-		//this.records.students.setId(line[0]);
+		// System.out.print(dMarks[s-4] +" " );
 	}
-	public String getModuleCode(){
+	// System.out.println(":");
+
+	// records = new StudentRecord[400];
+	// records[0].setMarks(dMarks);
+	public String getModuleCode() {
 		return this.module.getCode();
 	}
-/*	public String getStudentId(){
-		return this.module==null? null: this.module.getId();
 
-	} */
+	/*
+	 * public String getStudentId(){ return this.module==null? null:
+	 * this.module.getId();
+	 *
+	 * }
+	 */
+	public Module() {
 
-	public Integer getYear(){
-		return this.year ;
 	}
-	public byte getTerm(){
-		return this.term ;
+
+	public int getYear() {
+		return year;
 	}
 
+	public void setYear(int year) {
+		this.year = year;
+	}
 
+	public byte getTerm() {
+		return term;
+	}
+
+	public void setTerm(byte term) {
+		this.term = term;
+	}
+
+	public ModuleDescriptor getModule() {
+		return module;
+	}
+
+	public void setModule(ModuleDescriptor module) {
+		this.module = module;
+	}
+
+	public StudentRecord[] getRecords() {
+		return records;
+	}
+
+	public void setRecords(StudentRecord[] records) {
+		this.records = records;
+	}
+
+	public double getFinalAverageGrade() {
+		finalAverageGrade = 0;
+		int count = 0;
+		for (StudentRecord studentRecord : records) {
+			if (studentRecord != null) {
+				// for (double mark : studentRecord.getRecords()) {
+				finalAverageGrade += studentRecord.getFinalScore();
+				count++;
+			}
+			// }
+			return finalAverageGrade / count;
+		}
+		return finalAverageGrade;
+
+	}
 }

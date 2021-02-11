@@ -1,3 +1,5 @@
+package com.homework.ecm;
+
 public class ModuleDescriptor {
 
 	private String code;
@@ -6,44 +8,47 @@ public class ModuleDescriptor {
 
 	private double[] continuousAssignmentWeights;
 
-	public ModuleDescriptor(){
+	public ModuleDescriptor() {
 
 	}
 
-	public ModuleDescriptor (String[] line) {
+	public ModuleDescriptor(String[] line) {
 		this.name = line[0];
-		this.code= line[1];
+		this.code = line[1];
 		int sum;
 		String w = "";
 		String[] weights;
-    for (int s = 2;s < line.length; s++){
-				w += line[s]+ ",";
+		for (int s = 2; s < line.length; s++) {
+			w += line[s] + ",";
 		}
-		w = w.replace('[',' ');
-		w = w.replace(']',' ');
+		w = w.replace('[', ' ');
+		w = w.replace(']', ' ');
 		weights = w.split(",");
-		//continuousAssignmentWeights[] = new continuousAssignmentWeights;
+		// continuousAssignmentWeights[] = new continuousAssignmentWeights;
 		double[] continuousAssignmentWeights = new double[weights.length];
-		//continuousAssignmentWeights.copyOf(continuousAssignmentWeights, weights.length);
-		for (int s = 0;s < weights.length; s++){
-				continuousAssignmentWeights[s]=Double.parseDouble(weights[s]);
-						//System.out.println(continuousAssignmentWeights[s]);
+		// continuousAssignmentWeights.copyOf(continuousAssignmentWeights,
+		// weights.length);
+		for (int s = 0; s < weights.length; s++) {
+			continuousAssignmentWeights[s] = Double.parseDouble(weights[s]);
+			// System.out.println(continuousAssignmentWeights[s]);
 		}
 
-		// this.continuousAssignmentWeights = line[2];
+		this.continuousAssignmentWeights = continuousAssignmentWeights;
 	}
 
-	public String getName(){
-		return this.name ;
+	public String getName() {
+		return this.name;
 	}
 
-	public String getCode(){
-		return this.code ;
+	public String getCode() {
+		return this.code;
 	}
-	public double[] getContinuousAssignmentWeights(){
-		return this.continuousAssignmentWeights ;
+
+	public double[] getContinuousAssignmentWeights() {
+		return this.continuousAssignmentWeights;
 	}
-	public void setCode(String newCode){
+
+	public void setCode(String newCode) {
 		this.code = newCode;
 	}
 }
