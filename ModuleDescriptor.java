@@ -1,4 +1,4 @@
-package com.homework.ecm;
+//package com.homework.ecm;
 
 public class ModuleDescriptor {
 
@@ -9,10 +9,17 @@ public class ModuleDescriptor {
 	private double[] continuousAssignmentWeights;
 
 	public ModuleDescriptor() {
-
+/*
+ * I created this empty constructor because it caused a trouble when I was coding without and IDE.
+ */
 	}
 
 	public ModuleDescriptor(String[] line) {
+		/*
+		 * This method assigns the values of method descriptors.
+		 * Converts the weights array to a string and then assigns them respectively.
+		 * It also gets rid of unwanted characters with replace and split methods.
+		 */
 		this.name = line[0];
 		this.code = line[1];
 		int sum;
@@ -24,13 +31,10 @@ public class ModuleDescriptor {
 		w = w.replace('[', ' ');
 		w = w.replace(']', ' ');
 		weights = w.split(",");
-		// continuousAssignmentWeights[] = new continuousAssignmentWeights;
+
 		double[] continuousAssignmentWeights = new double[weights.length];
-		// continuousAssignmentWeights.copyOf(continuousAssignmentWeights,
-		// weights.length);
 		for (int s = 0; s < weights.length; s++) {
 			continuousAssignmentWeights[s] = Double.parseDouble(weights[s]);
-			// System.out.println(continuousAssignmentWeights[s]);
 		}
 
 		this.continuousAssignmentWeights = continuousAssignmentWeights;

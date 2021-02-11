@@ -1,4 +1,4 @@
-package com.homework.ecm;
+//package com.homework.ecm;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -33,6 +33,9 @@ public class Student {
 	}
 
 	public double getGpa() {
+		/*
+		 * This method calculates a student's GPA according to his/her final scores from each module.
+		 */
 
 		for (StudentRecord studentRecord : records) {
 			gpa += studentRecord.getFinalScore();
@@ -61,13 +64,16 @@ public class Student {
 	}
 
 	public String printTranscript() {
-
+		/*
+		 * This method finds a student record of a student and then makes a transcript
+		 * for him/her, it groups the records by their year.
+		 */
 		System.out.println("University of Knowledge - Official Transcript");
 		System.out.println("\n");
 		System.out.println("\n");
 		System.out.println("ID: " + this.id);
 		System.out.println("Name: " + this.name);
-		System.out.println("GPA: " + getGpa());
+		System.out.println("GPA: " + Math.round(getGpa() * 100.0) / 100.0);
 		System.out.println("\n");
 
 		Map<Integer, List<StudentRecord>> groupby = new HashMap<>();
@@ -87,7 +93,8 @@ public class Student {
 		for (Entry<Integer, List<StudentRecord>> s : groupby.entrySet()) {
 			for (StudentRecord studentRecord : s.getValue()) {
 				System.out.println(s.getKey() + " | " + studentRecord.getModule().getTerm() + " | "
-						+ studentRecord.getModule().getModule().getCode() + " | " + studentRecord.getFinalScore());
+						+ studentRecord.getModule().getModule().getCode() + " | "
+						+ Math.round(studentRecord.getFinalScore()));
 
 			}
 			System.out.println("\n");

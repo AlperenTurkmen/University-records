@@ -1,4 +1,4 @@
-package com.homework.ecm;
+//package com.homework.ecm;
 
 public class Module {
 
@@ -13,28 +13,20 @@ public class Module {
 	private double finalAverageGrade;
 
 	public Module(String[] line) {
+		/*
+		 * This method assigns values to objects' attributes. it uses trim() method to
+		 * get rid of unwanted characters (Whitespace).
+		 */
 		module = new ModuleDescriptor();
 		this.module.setCode(line[1]);
 		this.year = Integer.parseInt(line[2].trim());
 		this.term = Byte.parseByte(line[3].trim());
-		// this.module = UoK.findModuleDescriptor(line[1]);
-
-		// System.out.print(dMarks[s-4] +" " );
 	}
-	// System.out.println(":");
 
-	// records = new StudentRecord[400];
-	// records[0].setMarks(dMarks);
 	public String getModuleCode() {
 		return this.module.getCode();
 	}
 
-	/*
-	 * public String getStudentId(){ return this.module==null? null:
-	 * this.module.getId();
-	 *
-	 * }
-	 */
 	public Module() {
 
 	}
@@ -72,16 +64,18 @@ public class Module {
 	}
 
 	public double getFinalAverageGrade() {
+		/*
+		 * This method finds the average grade of a module by looping all students and
+		 * looking at their final scores.
+		 */
 		finalAverageGrade = 0;
 		int count = 0;
 		for (StudentRecord studentRecord : records) {
 			if (studentRecord != null) {
-				// for (double mark : studentRecord.getRecords()) {
 				finalAverageGrade += studentRecord.getFinalScore();
 				count++;
 			}
-			// }
-			return finalAverageGrade / count;
+			return finalAverageGrade / count; // final scores / student count.
 		}
 		return finalAverageGrade;
 

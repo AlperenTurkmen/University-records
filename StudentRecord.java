@@ -1,4 +1,4 @@
-package com.homework.ecm;
+//package com.homework.ecm;
 
 public class StudentRecord {
 
@@ -33,18 +33,27 @@ public class StudentRecord {
 	}
 
 	public double getFinalScore() {
+		/*
+		 * This method calculates a student's final score from a module. It does this by
+		 * multiplying weights with marks respectively.
+		 */
+		finalScore = 0;
 		for (double mark : marks) {
 			if (this.module.getModule() != null) {
 				for (double weight : this.module.getModule().getContinuousAssignmentWeights()) {
-					finalScore += mark * weight;
+					finalScore += mark * weight * 10;
 				}
 			}
 
 		}
-		return finalScore;
+
+		return finalScore / this.module.getModule().getContinuousAssignmentWeights().length;
 	}
 
 	public Boolean getIsAboveAverage() {
+		/*
+		 * To see if a student is above or below average.
+		 */
 		return this.finalScore > this.module.getFinalAverageGrade();
 	}
 
