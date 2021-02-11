@@ -1,4 +1,4 @@
-//package com.homework.ecm;
+//package com.homework.ecm; //This line was for eclipse, we don't need it as long as we don't run it in an IDE.
 
 import java.io.File; // Import the File class
 import java.io.FileNotFoundException; // Import this class to handle errors
